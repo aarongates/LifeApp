@@ -1,4 +1,6 @@
 Uninstalled homebrew, nvm, node, npm, nodemon, express
+(to disassociate brew and npm--they don't like each other.
+I'll reinstall brew for things like python and sql later).
 
 Installed nvm:
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
@@ -9,6 +11,30 @@ nvm install node
 Checked everything installed ok:
 nvm --version && node -v && npm -v0
 
-Installed Vue.js:
-npm install -g vue-cli
+Made a git repo for the site and clone it 
+    git clone <URL from github>
+    cd (to the the new folder)
 
+Created Client Side stuff:
+    Got vue.js going (client server will run on localhost:8080):
+    npm install -g vue-cli
+    vue init webpack <name of new client side folder>
+    cd <name of new client side folder>
+    npm install
+    git add --all
+    git commit -m 'got Vue going'
+    git push
+    npm run dev
+
+Created Server Side stuff:
+    cd .. (if still in client side folder)
+    mkdir <name of new server side folder>
+    cd <name of new server side folder>
+    npm init -f
+    npm install --save nodemon eslint
+    node ./node_modules/eslint/bin/eslint.js --init
+    (add "no-console":0 to the rules in the new .eslintrc.json file)
+    npm start
+    (ctrl+c)
+    npm install --save express body-parser cors morgan
+    
