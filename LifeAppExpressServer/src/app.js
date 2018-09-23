@@ -1,4 +1,4 @@
-console.log('hello world')
+console.log('hello world from <server folder>/app.js')
 
 // express is the web server
 const express = require('express')
@@ -14,9 +14,9 @@ app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
 
-app.get('/status', (req, res) => {
+app.post('/register', (req, res) => {
   res.send({
-    message: 'hello world!'
+    message: `Hello ${req.body.email}! You're now registered!`
   })
 })
 

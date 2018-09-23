@@ -25,6 +25,9 @@ Created Client Side stuff:
     git commit -m 'got Vue going'
     git push
     npm run dev
+    (ctrl+c)
+    npm install --save axios
+    manually created <client folder>/src/services/api.js 
 
 Created Server Side stuff:
     cd .. (if still in client side folder)
@@ -37,4 +40,97 @@ Created Server Side stuff:
     npm start
     (ctrl+c)
     npm install --save express body-parser cors morgan
+    git add --all
+    git commit -m 'got Express going'
+    git push
+    npm start
+
+Made a registration endpoint
+    manually created <client folder>/src/services/api.js:
+        import axios from 'axios'
+        export default () => {
+            return axios.create({
+                baseURL: 'http://localhost:8081/'
+            })
+        }
+    manually created <client folder>/src/services/AuthenticationService.js:
+        import Api from '@/services/Api'
+        export default {
+            register (credentials) {
+                return Api().post('register', credentials)
+            }
+        }
+    added this <server folder>/src/app.js:
+        app.post('/register', (req, res) => {
+            res.send({
+                message: 'Hello ${req.body.email}! You\'re now registered!'
+            })
+        })
+    Declared /register route in <client folder>/src/router/index.js:
+        {
+            path: '/register',
+            name: 'register',
+            component: Register
+        }
+    Declared Register Import in the same file:
+        import Register from '@/components/Register'
+    Created <client folder>/src/components/Register.vue:
+        <template>
+            <div>
+                <h1>Register</h1>
+
+                <input
+                    type="email"
+                    name="email"
+                    v-model="email"
+                    placeholder="email"/>
+                <br>
+                <input
+                    type="password"
+                    name="password"
+                    v-model="password"
+                    placeholder="password"/>
+                <br>
+                <button
+                    @click="register">
+                    Register
+                </button>
+            </div>
+        </template>
+
+        <script>
+        import authenticationService from '@/services/authenticationService'
+        export default {
+            data () {
+                return {
+                    email: 'you@somewhere.something',
+                    password: 'secret thing'
+                }
+            },
+            watch: {
+                email (value) {
+                    console.log('email has changed', value)
+                }
+            },
+            methods: {
+                async register () {
+                    const res = await authenticationService.register({
+                        email: this.email,
+                        password: this.password
+                    })
+                    console.log(res.data.message)
+                }
+            },
+            mounted () {
+                setTimeout(() => {
+                    this.email = 'hey asshole'
+                }, 2000)
+            }
+        }
+        </script>
+
+        <!-- Add "scoped" attribute to limit CSS to this component only -->
+        <style scoped>
+
+        </style>
     
