@@ -1,3 +1,12 @@
+Used youtube tutorial (seven parts):
+https://www.youtube.com/watch?v=Fa4cRMaTDUI
+https://www.youtube.com/watch?v=xZMwg5z5VGk&t=17s
+https://www.youtube.com/watch?v=H6hM_5ilhqw
+https://www.youtube.com/watch?v=1NSPAz1Qc-I
+https://www.youtube.com/watch?v=3zw5LgKDMhg
+https://www.youtube.com/watch?v=ipYlztBRpp0
+https://www.youtube.com/watch?v=stx-tUS0vo4
+
 Uninstalled homebrew, nvm, node, npm, nodemon, express
 (to disassociate brew and npm--they don't like each other.
 I'll reinstall brew for things like python and sql later).
@@ -134,3 +143,6 @@ Made a registration endpoint
 
         </style>
     
+    git add --all
+    git commit -m 'superficial registration page'
+    git push
